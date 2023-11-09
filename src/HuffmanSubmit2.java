@@ -1,10 +1,5 @@
 // Import any package as required
-
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
-
+import java.util.*;
 public class HuffmanSubmit2 implements Huffman {
 
 
@@ -14,7 +9,15 @@ public class HuffmanSubmit2 implements Huffman {
   }
 
 
+  public static int charFreqTable(String input){
+      Map<Character, Integer> freq = new HashMap<>();
+      int count = 0;
+      for (int i = 0; i < input.toCharArray().length; i++){
+          count++;
+      }
 
+      return count;
+  }
 
 
 
@@ -38,7 +41,10 @@ public class HuffmanSubmit2 implements Huffman {
 		huffman.encode("ur.jpg", "ur.enc", "freq.txt");
 		huffman.decode("ur.enc", "ur_dec.jpg", "freq.txt");
 		// After decoding, both ur.jpg and ur_dec.jpg should be the same. 
-		// On linux and mac, you can use `diff' command to check if they are the same. 
-   }
+		// On linux and mac, you can use `diff' command to check if they are the same.
+
+       System.out.print(charFreqTable("appleadjkfhnal'hfkjahfg;kjahnf;kgjafk;ghafg"));
+  }
+
 
 }
