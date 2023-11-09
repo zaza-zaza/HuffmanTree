@@ -13,31 +13,7 @@ public class HuffmanSubmit2 implements Huffman {
 
   }
 
-  public static void  huffmanTree(String txt){
-      if(txt == null || txt.length()== 0){
-          return;
-      }
-      // sort characters by frequency
-      Map<Character, Integer> freq = new HashMap<>();
 
-      // loop string to stores characters
-      for (char c:  txt.toCharArray()){
-
-          // returns a default value if null character is null
-          freq.put(c, freq.getOrDefault(c, 0)+1);
-      }
-
-      // create priority queue to store nodes
-      PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(l -> l.freq));
-
-      // iterate through the hash map
-      for(var entry: freq.entrySet()){
-
-          // creating leaf node and adding it to the queue
-          pq.add(new Node(entry.getKey(), entry.getValue()));
-      }
-
-    }
 
 
 
