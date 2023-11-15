@@ -24,13 +24,13 @@ public class HuffmanSubmit implements Huffman {
       }
 
       // create priority queue to store nodes
-      PriorityQueue<Node> pq = new PriorityQueue<>(Comparator.comparingInt(l -> l.freq));
+      PriorityQueue<HuffmanSubmit2.Node> pq = new PriorityQueue<>(Comparator.comparingInt(l -> l.freq));
 
       // iterate through the hash map
       for(var entry: freq.entrySet()){
 
           // creating leaf node and adding it to the queue
-          pq.add(new Node(entry.getKey(), entry.getValue()));
+          pq.add(new HuffmanSubmit2.Node(entry.getKey(), entry.getValue()));
       }
 
     }
