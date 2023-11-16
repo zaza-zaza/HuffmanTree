@@ -30,7 +30,6 @@ public class HuffmanSubmit implements Huffman {
       for(var entry: freq.entrySet()){
 
           // creating leaf node and adding it to the queue
-          pq.add(new HuffmanSubmit2.Node(entry.getKey(), entry.getValue()));
       }
 
     }
