@@ -10,27 +10,32 @@ public class HuffmanSubmit2 implements Huffman {
 
     }
 
-
     public void charFreqTable(File file)
             throws IOException{
-        Scanner s = new Scanner(file);
-        String input = s.next();
 
-        // convert string to char array
-        int n = input.length();
-
-        int i = 0;
-        while(s.hasNext()){
-            System.out.print(input.charAt(i++));
+        String string = "";
+//        File file = new File(file);
+        Scanner scanner = new Scanner(file);
+        string = scanner.nextLine();
+        while (scanner.hasNextLine()) {
+            string = string + "\n" + scanner.nextLine();
         }
+        char[] charArr = string.toCharArray();
+
+        for(char c : charArr){
+            System.out.print(c);
+        }
+
+        // adding char array to hash map
+        int n = charArr.length;
         Map<Character, Integer> freq = new HashMap<>();
-//        for (int i = 0; i < n; i++) {
-//            if (freq.containsKey(input.charAt(i))) {
-//                freq.put(input.charAt(i), freq.get(input.charAt(i)) + 1);
-//            } else {
-//                freq.put(input.charAt(i), 1);
-//            }
-//        }
+        for (char c : charArr) {
+            if (freq.containsKey(c)) {
+                freq.put(c, freq.get(c) + 1);
+            } else {
+                freq.put(c, 1);
+            }
+        }
 
         // writing the frequency table to text file
         FileWriter fw = new FileWriter("freqTable");
@@ -40,40 +45,48 @@ public class HuffmanSubmit2 implements Huffman {
         fw.close();
     }
 
-    // Feel free to add more methods and variables as required.
-
     public void encode(String inputFile, String outputFile, String freqFile){
         // constructing huffman tree
         try{
-            charFreqTable(new File("/src/alice30.txt"));
+            charFreqTable(new File(inputFile));
         } catch(IOException e){
-            System.out.println("IOException");
+            System.out.println("FileReader exception");
         }
 
-        // creating file to read
-        Scanner s = new Scanner("/src/freqTable");
-        String freqIn = s.nextLine();
-    }
+        Scanner s = new Scanner(freqFile);
+        String string = s.nextLine();
+        while(s.hasNextLine()){
+            System.out.println(string);
+        }
+        s.close();
 
+        try{
+            FileWriter fw = new FileWriter(outputFile);
+            fw.write("test");
+            fw.close();
+        } catch(IOException e){
+            System.out.println("FileWriter error" + e.getMessage());
+        }
+
+    }
 
     public void decode(String inputFile, String outputFile, String freqFile){
         // TODO: Your code here
     }
 
-
-
-
     public static void main(String[] args) throws IOException{
         Huffman  huffman = new HuffmanSubmit2();
+
         huffman.encode("ur.jpg", "ur.enc", "freq.txt");
         huffman.decode("ur.enc", "ur_dec.jpg", "freq.txt");
         // After decoding, both ur.jpg and ur_dec.jpg should be the same.
         // On linux and mac, you can use `diff' command to check if they are the same.
 
+//        charFreqTable(new File("src/alice30.txt"));
+        huffman.encode("src/testFile2.txt", "test.enc", "src/freqTable");
     }
 
     public static class Node {
-
         private Character ch;
         private Node left = null;
         private Node right = null;
