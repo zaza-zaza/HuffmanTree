@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d83ac559-089b-448f-8ede-50d47c25eb3e" name="Changes" comment="created frequency table" />
+    <list default="true" id="d83ac559-089b-448f-8ede-50d47c25eb3e" name="Changes" comment="nedd to make nodes work">
+      <change afterPath="$PROJECT_DIR$/src/HuffmanSubmit3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HuffmanSubmit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HuffmanSubmit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HuffmanSubmit2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HuffmanSubmit2.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +85,20 @@
       <recent name="" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="HuffmanSubmit3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HuffmanSubmit3" />
+      <module name="project2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HuffmanSubmit3" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,7 +112,8 @@
       <workItem from="1699554032037" duration="1804000" />
       <workItem from="1700078510955" duration="4919000" />
       <workItem from="1700104688846" duration="7607000" />
-      <workItem from="1700145730593" duration="13610000" />
+      <workItem from="1700145730593" duration="14831000" />
+      <workItem from="1700270928168" duration="5549000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -134,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700160565256</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="nedd to make nodes work">
+      <option name="closed" value="true" />
+      <created>1700170995043</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700170995043</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,7 +173,8 @@
     <MESSAGE value="First Attempt" />
     <MESSAGE value="First commit" />
     <MESSAGE value="created frequency table" />
-    <option name="LAST_COMMIT_MESSAGE" value="created frequency table" />
+    <MESSAGE value="nedd to make nodes work" />
+    <option name="LAST_COMMIT_MESSAGE" value="nedd to make nodes work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
