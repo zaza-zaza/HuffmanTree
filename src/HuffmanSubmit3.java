@@ -20,6 +20,7 @@ public class HuffmanSubmit3 implements Huffman{
 
     private final Map<String, Integer> huffCodesAndFreq;
 
+
     // huffman coding constructor
     public HuffmanSubmit3() throws IOException {
 //        this.text = text;
@@ -41,6 +42,10 @@ public class HuffmanSubmit3 implements Huffman{
         String string = new String(Files.readAllBytes(Paths.get(file)));
         return string;
     }
+//    public static String readIn(File file) throws IOException {
+//        String string = new String(Files.readAllBytes(Paths.get(file)));
+//        return string;
+//    }
     @Override
     public void encode(String inputFile, String outputFile, String freqFile) {
 
@@ -71,6 +76,7 @@ public class HuffmanSubmit3 implements Huffman{
         try {
             FileWriter fw = new FileWriter(new File(outputFile));
             fw.write(getEncodedText(inputFile));
+            fw.flush();
             fw.close();
         } catch(IOException e){
             e.getMessage();
@@ -95,12 +101,15 @@ public class HuffmanSubmit3 implements Huffman{
             huffCodes.put(((LeafNode) node).getCharacter(), code);
             return;
         }
+
         generateCodes(node.getLeft(), code.concat("0"));
         generateCodes(node.getRight(), code.concat("1"));
 
     }
     @Override
     public void decode(String inputFile, String outputFile, String freqFile) {
+        Map<String, Integer> freqFileMap = new HashMap<>();
+        PriorityQueue<Node> pq = new PriorityQueue<>();
         // reading encoded input file
         try {
             inputFile = readIn(inputFile);
@@ -108,6 +117,18 @@ public class HuffmanSubmit3 implements Huffman{
             e.getMessage();
         }
 
+        // read freqFile and convert to hashmap
+//        try {
+//            Scanner s = new Scanner(new File(freqFile));
+//            while (s.hasNextLine()) {
+//                String[] freqToMap = s.nextLine().split(":");
+//                freqFileMap.put(freqToMap[0], Integer.parseInt(freqToMap[1]));
+//            }
+//        } catch (IOException e){
+//            e.printStackTrace();
+//        }
+
+        // decoding algorithm
         StringBuilder sb = new StringBuilder();
         Node current = root;
         for(char character : inputFile.toCharArray()){
@@ -117,6 +138,9 @@ public class HuffmanSubmit3 implements Huffman{
                 current = root;
             }
         }
+
+
+
         try{
             FileWriter fw = new FileWriter(new File(outputFile));
             fw.write(sb.toString());
@@ -153,14 +177,21 @@ public class HuffmanSubmit3 implements Huffman{
 
     // creating a node class
     public class Node implements Comparable<Node> {
-        private final int freq;
+        private int freq;
         private Node left;
         private Node right;
+        int pixel;
 
         public Node(Node left, Node right){
             this.freq = left.getFreq() + right.getFreq();
             this.right = right;
             this.left = left;
+
+        }
+
+        public Node(int pixel, int freq){
+            this.pixel = pixel;
+            this.freq = freq;
         }
 
         public Node(int freq) {
@@ -170,6 +201,9 @@ public class HuffmanSubmit3 implements Huffman{
         public int compareTo(Node node){
             return Integer.compare(freq, node.getFreq());
         }
+//        public int compareTo(Node other){
+//            return this.freq - other.freq;
+//        }
 
         public int getFreq() {
             return freq;
@@ -183,6 +217,10 @@ public class HuffmanSubmit3 implements Huffman{
             return right;
         }
     }
+    // image compression
+//    public static String compressImage(int[][][] pixels){
+//        Map<Integer, Integer> histogram = ca
+//    }
 
     // creating leaf class for priority queue
     public class LeafNode extends Node{
@@ -199,6 +237,9 @@ public class HuffmanSubmit3 implements Huffman{
     public static void main(String[] args) throws IOException {
         HuffmanSubmit3 huffman = new HuffmanSubmit3();
         huffman.encode("src/alice30.txt", "alice.enc", "alice_freqFile.txt");
-        huffman.decode("alice.enc", "alice_dec.txt", "apple");
+        huffman.decode("alice.enc", "alice_dec.txt", "alice_freqFile.txt");
+
+//        huffman . encode (" ur.jpg " , " ur.enc " , " freq.txt ") ;
+//        huffman . decode (" ur.enc " , " ur_dec.jpg " , " freq.txt " );
     }
 }

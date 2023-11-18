@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d83ac559-089b-448f-8ede-50d47c25eb3e" name="Changes" comment="updated, working huffman encoding and decoding. Need to give it abilities to read and write text files">
+    <list default="true" id="d83ac559-089b-448f-8ede-50d47c25eb3e" name="Changes" comment="updated, working huffman encoding and decoding. Has file reading and writing capabilities. Needs to use BinaryOut and BinaryIn classes to be able to interpret images.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/freq" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/freqTable" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HuffmanSubmit3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HuffmanSubmit3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testFile2.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +110,7 @@
       <workItem from="1700078510955" duration="4919000" />
       <workItem from="1700104688846" duration="7607000" />
       <workItem from="1700145730593" duration="14831000" />
-      <workItem from="1700270928168" duration="13508000" />
+      <workItem from="1700270928168" duration="18996000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -171,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700331843687</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updated, working huffman encoding and decoding. Has file reading and writing capabilities. Needs to use BinaryOut and BinaryIn classes to be able to interpret images.">
+      <option name="closed" value="true" />
+      <created>1700340344011</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700340344011</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,7 +188,8 @@
     <MESSAGE value="created frequency table" />
     <MESSAGE value="nedd to make nodes work" />
     <MESSAGE value="updated, working huffman encoding and decoding. Need to give it abilities to read and write text files" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated, working huffman encoding and decoding. Need to give it abilities to read and write text files" />
+    <MESSAGE value="updated, working huffman encoding and decoding. Has file reading and writing capabilities. Needs to use BinaryOut and BinaryIn classes to be able to interpret images." />
+    <option name="LAST_COMMIT_MESSAGE" value="updated, working huffman encoding and decoding. Has file reading and writing capabilities. Needs to use BinaryOut and BinaryIn classes to be able to interpret images." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
