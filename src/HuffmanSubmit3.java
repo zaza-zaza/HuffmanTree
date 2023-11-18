@@ -1,29 +1,63 @@
+import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
+
 public class HuffmanSubmit3 implements Huffman{
 
     private Node root;
-    private final String text;
+    public String text;
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
     private Map<Character, Integer> charFreq;
     private final Map<Character, String> huffCodes;
 
+    private final Map<String, Integer> huffCodesAndFreq;
+
     // huffman coding constructor
-    public HuffmanSubmit3(String text){
-        this.text = text;
-        charFreqTable();
+    public HuffmanSubmit3() throws IOException {
+//        this.text = text;
+//        charFreqTable();
         huffCodes = new HashMap<>();
+        huffCodesAndFreq = new HashMap<>();
     }
     // creating frequency table
-    private void charFreqTable(){
-        charFreq = new HashMap<>();
-        for (char character : text.toCharArray()){
-            Integer i = charFreq.get(character);
-            charFreq.put(character, i != null ? i + 1 : 1);
-        }
-    }
+//    private void charFreqTable(){
+//        charFreq = new HashMap<>();
+//        for (char character : text.toCharArray()){
+//            Integer i = charFreq.get(character);
+//            charFreq.put(character, i != null ? i + 1 : 1);
+//        }
+//    }
 
+    // reading text file
+    public static String readIn(String file) throws IOException {
+        String string = new String(Files.readAllBytes(Paths.get(file)));
+        return string;
+    }
     @Override
     public void encode(String inputFile, String outputFile, String freqFile) {
 
+        // read input file
+        try {
+            inputFile = readIn(inputFile);
+        }catch(IOException e){
+            e.getMessage();
+        }
+
+        // char frequency table
+        charFreq = new HashMap<>();
+        for (char character : inputFile.toCharArray()){
+            Integer i = charFreq.get(character);
+            charFreq.put(character, i != null ? i + 1 : 1);
+        }
+        // traversing priority queue and converting characters to bits
         Queue<Node> pq = new PriorityQueue<>();
         charFreq.forEach((character, freq) ->
                 pq.add(new LeafNode(character, freq))
@@ -32,18 +66,31 @@ public class HuffmanSubmit3 implements Huffman{
             pq.add(new Node(pq.poll(), pq.poll()));
         }
         generateCodes(root = pq.poll(), "");
-        System.out.println(getEncodedText());
+
+        // generating output text file
+        try {
+            FileWriter fw = new FileWriter(new File(outputFile));
+            fw.write(getEncodedText(inputFile));
+            fw.close();
+        } catch(IOException e){
+            e.getMessage();
+        }
+        printFrequencyTable(freqFile);
+
+
     }
 
-    private String getEncodedText(){
+    private String getEncodedText(String inputFile){
         StringBuilder sb = new StringBuilder();
-        for (char character : text.toCharArray()){
+        for (char character : inputFile.toCharArray()){
             sb.append(huffCodes.get(character));
         }
         return sb.toString();
     }
 
     private void generateCodes(Node node, String code){
+        BinaryOut bo = new BinaryOut();
+
         if (node instanceof LeafNode){
             huffCodes.put(((LeafNode) node).getCharacter(), code);
             return;
@@ -54,6 +101,13 @@ public class HuffmanSubmit3 implements Huffman{
     }
     @Override
     public void decode(String inputFile, String outputFile, String freqFile) {
+        // reading encoded input file
+        try {
+            inputFile = readIn(inputFile);
+        }catch(IOException e){
+            e.getMessage();
+        }
+
         StringBuilder sb = new StringBuilder();
         Node current = root;
         for(char character : inputFile.toCharArray()){
@@ -63,12 +117,38 @@ public class HuffmanSubmit3 implements Huffman{
                 current = root;
             }
         }
-        System.out.println(sb.toString());
+        try{
+            FileWriter fw = new FileWriter(new File(outputFile));
+            fw.write(sb.toString());
+        }catch(IOException e){
+            e.getMessage();
+            e.printStackTrace();
+        }
+//        System.out.println(sb.toString());
     }
     // print codes class. Make this output a file
+    public void printFrequencyTable(String freqFile){
+        ArrayList<String> al = new ArrayList<>();
+        // combining codes and frequency into a new map
+        charFreq.forEach((character, integer) ->
+                huffCodesAndFreq.put(huffCodes.get(character), charFreq.get(character))
+                );
+        try {
+            FileWriter fw = new FileWriter(freqFile);
+            for (Map.Entry<String, Integer> entry :
+                    huffCodesAndFreq.entrySet()) {
+                fw.write(entry.getKey() + ": " + entry.getValue() + "\n");
+            }
+            fw.flush();
+            fw.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void printCodes(){
-        huffCodes.forEach((character, code) ->
-                System.out.println((character + ": " + code)));
+        charFreq.forEach((character, freq) ->
+                System.out.println((freq + ": " + character)));
     }
 
     // creating a node class
@@ -116,10 +196,9 @@ public class HuffmanSubmit3 implements Huffman{
             return character;
         }
     }
-    public static void main(String[] args){
-        HuffmanSubmit3 huffman = new HuffmanSubmit3("Peach apple pie");
-        huffman.encode("apple", "apple", "apple");
-        huffman.printCodes();
-        huffman.decode("1111001100110011101011000000111110110100110101", "apple", "apple");
+    public static void main(String[] args) throws IOException {
+        HuffmanSubmit3 huffman = new HuffmanSubmit3();
+        huffman.encode("src/alice30.txt", "alice.enc", "alice_freqFile.txt");
+        huffman.decode("alice.enc", "alice_dec.txt", "apple");
     }
 }
