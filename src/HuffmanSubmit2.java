@@ -1,31 +1,23 @@
 // Import any package as required
 import java.util.*;
-import java.util.concurrent.ArrayBlockingQueue;
-
 public class HuffmanSubmit2 implements Huffman {
 
 
-    HuffmanSubmit2() {
 
-    }
+  HuffmanSubmit2(){
+
+  }
 
 
-    public static Map<Character, Integer> charFreqTable(String input) {
-        // convert string to char array
-        char[] charArr = input.toCharArray();
-        int n = input.length();
-        Map<Character, Integer> freq = new HashMap<>();
-        int count = 0;
-        for (int i = 0; i < n; i++) {
-            if (freq.containsKey(input.charAt(i))) {
-                freq.put(input.charAt(i), freq.get(input.charAt(i)) + 1);
-            } else {
-                freq.put(input.charAt(i), 1);
-            }
-        }
+  public static int charFreqTable(String input){
+      Map<Character, Integer> freq = new HashMap<>();
+      int count = 0;
+      for (int i = 0; i < input.toCharArray().length; i++){
+          count++;
+      }
 
-        return freq;
-    }
+      return count;
+  }
 
 
 
@@ -51,9 +43,8 @@ public class HuffmanSubmit2 implements Huffman {
 		// After decoding, both ur.jpg and ur_dec.jpg should be the same. 
 		// On linux and mac, you can use `diff' command to check if they are the same.
 
-       System.out.print(charFreqTable("APPLES AND BANANAS"));
+       System.out.print(charFreqTable("appleadjkfhnal'hfkjahfg;kjahnf;kgjafk;ghafg"));
   }
-
 
 
 }
